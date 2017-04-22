@@ -1,6 +1,6 @@
 import { version } from '../../package.json';
 import { Router } from 'express';
-import clients from './customers'
+import clients from './customers';
 
 export default ({ config, db }) => {
 	let api = Router();

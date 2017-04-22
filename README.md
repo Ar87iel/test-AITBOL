@@ -25,6 +25,6 @@ npm install -g jasmine-node
 
 # Run it from the CLI
 cd .../test-AITBOL
-jasmine-node spec/api/
+jasmine-node src/test/
 
 ```

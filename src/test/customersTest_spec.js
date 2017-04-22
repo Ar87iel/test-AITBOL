@@ -1,9 +1,9 @@
 var frisby = require('frisby');
 frisby.create('Get Brightbit Twitter feed')
-    .get('https://api.twitter.com/1/statuses/user_timeline.json?screen_name=brightbit')
+    .get('http://localhost:8080/api/customers')
     .expectStatus(200)
     .expectHeaderContains('content-type', 'application/json')
-    .expectJSON('0', {
+    /**.expectJSON('0', {
         place: function(val) { expect(val).toMatchOrBeNull("Oklahoma City, OK"); }, // Custom matcher callback
         user: {
             verified: false,
@@ -20,5 +20,5 @@ frisby.create('Get Brightbit Twitter feed')
             location: String,
             url: String
         }
-    })
+    })**/
     .toss();
