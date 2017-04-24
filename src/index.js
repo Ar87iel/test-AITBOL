@@ -3,10 +3,12 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
+import swagger from 'swagger-node-express';
 import initializeDb from './db';
 import middleware from './middleware';
 import api from './api';
 import config from './config.json';
+
 
 let app = express();
 app.server = http.createServer(app);
@@ -36,5 +38,8 @@ initializeDb( db => {
 
 	console.log(`Started on port ${app.server.address().port}`);
 });
+
+// Couple the application to the Swagger module.
+swagger.setAppHandler(app);
 
 export default app;

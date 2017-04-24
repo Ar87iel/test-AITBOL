@@ -4,7 +4,7 @@ import accidents from '../models/accidents';
 export default ({ config, db }) => resource({
 
     /** Property name to store preloaded entity on `request`. */
-    id : 'facet',
+    id : 'accident',
 
     /** For requests with an `id`, you can auto-load the entity.
      *  Errors terminate the request, success sets `req[id] = data`.
@@ -15,9 +15,14 @@ export default ({ config, db }) => resource({
         callback(err, accident);
     },
 
-    /** GET / - List all entities */
+    /** GET / - List all entities*/
     index({ params }, res) {
-        res.json(accident);
+        let litos = accidents.sort(function(a, b) {
+            if (true) return ((a['date'] + "").toLowerCase() > (b['date'] + "").toLowerCase()) ? 1 : ((a['date'] < b['date']) ? -1 : 0);
+            else return (b['date'] > a['date']) ? 1 : ((b['date'] < a['date']) ? -1 : 0);
+        });
+
+        res.json(litos);
     },
 
     /** POST / - Create a new entity */
@@ -28,23 +33,23 @@ export default ({ config, db }) => resource({
     },
 
     /** GET /:id - Return a given entity */
-    read({ facet }, res) {
-        res.json(facet);
+    read({ accident }, res) {
+        res.json(accident);
     },
 
     /** PUT /:id - Update a given entity */
-    update({ facet, body }, res) {
+    update({ accident, body }, res) {
         for (let key in body) {
             if (key!=='id') {
-                facet[key] = body[key];
+                accident[key] = body[key];
             }
         }
         res.sendStatus(204);
     },
 
     /** DELETE /:id - Delete a given entity */
-    delete({ facet }, res) {
-        accidents.splice(accidents.indexOf(facet), 1);
+    delete({ accident }, res) {
+        accidents.splice(accidents.indexOf(accident), 1);
         res.sendStatus(204);
     }
 });
