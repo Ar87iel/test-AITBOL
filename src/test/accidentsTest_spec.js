@@ -1,14 +1,13 @@
 var frisby = require('frisby');
-frisby.create('Spec customers')
-    .get('http://localhost:8080/api/customers')
+frisby.create('Spec accidents')
+    .get('http://localhost:8080/api/accidents')
     .expectStatus(200)
     .expectHeaderContains('content-type', 'application/json')
 
     .toss();
 
-
-frisby.create('Spec customers')
-    .get('http://localhost:8080/api/customers/0')
+frisby.create('Spec accidents')
+    .get('http://localhost:8080/api/accidents/2')
     .expectStatus(404)
     .expectHeaderContains('content-type', 'text/html')
 

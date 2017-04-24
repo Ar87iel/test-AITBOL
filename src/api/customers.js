@@ -15,6 +15,11 @@ export default ({ config, db }) => resource({
         callback(err, customer);
     },
 
+    /** GET / - List all entities*/
+    index({ params }, res) {
+        res.json(customers);
+    },
+
     /** POST / - Create a new entity */
     create({ body }, res) {
         body.id = customers.length.toString(36);
